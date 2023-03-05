@@ -1,6 +1,6 @@
 import axios  from "axios";
 
-axios.defaults.baseURL = "https://song-management-back.onrender.com"
+axios.defaults.baseURL = "https://addis-softaware-songs-backend.onrender.com/"
 export const getSongs = async()=> axios.get("/songs")
 export const addSongs =  async(song)=> axios.post("/songs", song)
 export const deleteSong = async(id)=> axios.delete("/songs",{

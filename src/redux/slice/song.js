@@ -3,14 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const song = createSlice({
     name:'song',
+  
     initialState:{
-        id:"",
+        id:0,
          title:"",
          artist:"",
          album:"",
          genre:""
 
     },
+    
     reducers:{
         setSongSlice:(state,action)=>{
             state=action.payload
@@ -18,5 +20,6 @@ const song = createSlice({
         } 
     }
 })
+
 export const {setSongSlice} = song.actions
 export default song.reducer
