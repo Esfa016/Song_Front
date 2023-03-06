@@ -13,3 +13,5 @@ export const updateSong =  async(song, id) => axios.put("/songs",song,{
         id:id
     }
 })
+
+export const getStats = async()=>axios.get("/songs/stats")

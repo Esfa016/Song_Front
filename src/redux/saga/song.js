@@ -1,6 +1,7 @@
 import * as api from "../../apis/index";
 import * as types from "../types/index";
 import * as slice from "../slice/songs";
+import * as statSlice from "../slice/stats"
 import {put,take, takeEvery} from "redux-saga/effects";
 export function* getSongsSaga(){
     const songs = yield api.getSongs();
@@ -29,10 +30,17 @@ export function* deleteSongSaga(action){
     yield put(slice.deleteSongsSlice(action.id))
 }
 
+export function* getStats(){
+    const stats = yield api.getStats()
+    console.log(stats.data.numberOfSongs);
+    yield put(statSlice.setStatSlice(stats.data))
+}
+
 
 export function* watchSongsAsync(){
     yield takeEvery(types.GET_SONGS,getSongsSaga)
     yield takeEvery(types.CREATE_SONG,createSongSaga)
     yield takeEvery(types.UPDATE_SONG,updateSongSaga)
     yield takeEvery(types.DELETE_SONG,deleteSongSaga)
+    yield takeEvery(types.GET_STATS,getStats)
 }
