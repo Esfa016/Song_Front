@@ -5,7 +5,7 @@ const song = createSlice({
     name:'song',
   
     initialState:{
-        id:0,
+        _id:"",
          title:"",
          artist:"",
          album:"",

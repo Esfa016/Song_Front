@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const songs = createSlice({
     name:'songs',
     initialState:[{
-        id:0,
+        _id:"",
          title:"",
          artist:"",
          album:"",
@@ -14,7 +14,7 @@ const songs = createSlice({
     }],
     reducers:{
         getSongsSlice:(state,action)=>{
-        
+            state = action.payload
             return state;
         },
         addSongsSlice:(state,action)=>{
@@ -22,11 +22,13 @@ const songs = createSlice({
             return state;
         },
         editSongsSlice:(state,action)=>{
-           state = state.map(i=>i.id===action.payload.id?action.payload:i)
+            console.log(action.payload)
+            //state = getSongsSlice(state,action)
+           state = state.map(i=>i._id===action.payload._id?action.payload:i)
             return state;
         } ,
         deleteSongsSlice:(state,action)=>{
-          state =  state.filter(i=>i.id!==action.payload)
+          state =  state.filter(i=>i._id!==action.payload)
             return state;
         }
     }
