@@ -10,54 +10,115 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import * as types from "../redux/types/index";
 import * as slice from "../redux/slice/song"
+import styled from '@emotion/styled';
+import BasicCard from './statcard';
 
 export default function SongsTable() {
+  const StyledButton = styled.button`
+width: 100%;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #0056b3;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+
+  &:active {
+    background-color: #003b80;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(2px);
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+  const StyledTableCell = styled(TableCell)`
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+  font-size: 16px
+`;
+  const StyledTable = styled(Table)`
+  min-width: 650px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+`;
+const StyledTableRow = styled(TableRow)`
+  &:nth-of-type(even) {
+    background-color: #f9f9f9;
+  }
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+
+
   const rows = useSelector(state=>state.songs)
 const dispatch = useDispatch();
 React.useEffect(()=>{dispatch({type:types.GET_SONGS})},[])
    
 
   return (
+    <div style={{ textAlign: 'center' }} >
+      <div>
+    <StyledTable>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
-          <TableRow>
-           <TableCell align="right">Title</TableCell>
-            <TableCell align="right">Album</TableCell>
-            <TableCell align="right">Artist</TableCell>
-            <TableCell align="right">Genre</TableCell>
-            <TableCell align="right">Edit</TableCell>
-            <TableCell align="right">Delete</TableCell>
-          </TableRow>
+          <StyledTableRow>
+            <StyledTableCell align="right">Title</StyledTableCell>
+            <StyledTableCell align="right">Album</StyledTableCell>
+            <StyledTableCell align="right">Artist</StyledTableCell>
+            <StyledTableCell align="right">Genre</StyledTableCell>
+            <StyledTableCell align="right">Edit</StyledTableCell>
+            <StyledTableCell align="right">Delete</StyledTableCell>
+          </StyledTableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
           
-            <TableRow
+            <StyledTableRow
               key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               {/* <TableCell component="th" scope="row">
                 {row.title}
               </TableCell> */}
-              <TableCell align="right">{row.title}</TableCell>
-              <TableCell align="right">{row.album}</TableCell>
-              <TableCell align="right">{row.artist}</TableCell>
-              <TableCell align="right">{row.genre}</TableCell>
-              <TableCell align="right">
-              <Button onClick={()=>dispatch(slice.setSongSlice(row))}  variant="contained">Edit</Button>
+              <StyledTableCell align="right">{row.title}</StyledTableCell>
+              <StyledTableCell align="right">{row.album}</StyledTableCell>
+              <StyledTableCell align="right">{row.artist}</StyledTableCell>
+              <StyledTableCell align="right">{row.genre}</StyledTableCell>
+              <StyledTableCell align="right">
+              <StyledButton onClick={()=>dispatch(slice.setSongSlice(row))}  variant="contained">Edit</StyledButton>
         
-              </TableCell>
+              </StyledTableCell>
               <TableCell align="right">
-              <Button 
+              <StyledButton 
                onClick={()=> dispatch({type: types.DELETE_SONG, id: row._id}) }
-              variant="contained">Delete</Button>
+              variant="contained">Delete</StyledButton>
               </TableCell>
             
-            </TableRow>
+            </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </StyledTable>
+    </div>
+    
+    </div>
   );
 }

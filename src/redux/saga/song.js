@@ -9,9 +9,19 @@ export function* getSongsSaga(){
     yield put(slice.getSongsSlice(songs.data.data))
 }
 export function* createSongSaga(action){
+    try{
   const resp =  yield api.addSongs(action.song)
   console.log(resp);
     yield put(slice.addSongsSlice(action.song))
+    }
+    catch(e){
+        if(e.response){
+            alert(e.response.data)
+        }
+        else{
+            alert('error while saving song')
+        }
+    }
 }
 
 export function* updateSongSaga(action){

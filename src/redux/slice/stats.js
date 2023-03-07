@@ -5,11 +5,14 @@ const stats = createSlice({
         numberOfSongs:0,
         totlalArtists:0,
         totalAlbums:0,
-        totalGenre:0
+        totalGenre:0,
+        isLoading:true
     },
     reducers:{
         setStatSlice(state,action){
+           
             state = action.payload
+            state.isLoading = false
             console.log('state here');
             console.log(state)
             return state;
