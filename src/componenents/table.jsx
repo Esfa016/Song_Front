@@ -13,7 +13,9 @@ import * as slice from "../redux/slice/song"
 import styled from '@emotion/styled';
 import BasicCard from './statcard';
 
+import { Link, useNavigate } from 'react-router-dom';
 export default function SongsTable() {
+
   const StyledButton = styled.button`
 width: 100%;
   padding: 10px 20px;
@@ -64,12 +66,17 @@ const StyledTableRow = styled(TableRow)`
   }
 `;
 
-
+const navigation = useNavigate()
 
   const rows = useSelector(state=>state.songs)
 const dispatch = useDispatch();
 React.useEffect(()=>{dispatch({type:types.GET_SONGS})},[])
-   
+const handleEditClick = (id) => {
+  navigation(`/edit/${id}`)
+};
+
+
+
 
   return (
     <div style={{ textAlign: 'center' }} >
@@ -102,7 +109,7 @@ React.useEffect(()=>{dispatch({type:types.GET_SONGS})},[])
               <StyledTableCell align="right">{row.artist}</StyledTableCell>
               <StyledTableCell align="right">{row.genre}</StyledTableCell>
               <StyledTableCell align="right">
-              <StyledButton onClick={()=>dispatch(slice.setSongSlice(row))}  variant="contained">Edit</StyledButton>
+              <StyledButton onClick={()=> handleEditClick(row._id) } variant="contained">Edit</StyledButton>
         
               </StyledTableCell>
               <TableCell align="right">

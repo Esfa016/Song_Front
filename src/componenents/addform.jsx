@@ -59,11 +59,12 @@ const MyForm = ()=>{
   }
     const dispatch = useDispatch()
     const handleChange=(prop)=>(event)=>{
+      
        dispatch( setSongSlice({...song,[prop]:event.target.value}))
     }
       const song= useSelector(state => state.song)
     const hanleSubmit = ()=>{
-      alert(song._id)
+      alert(song.album)
           song._id===""? dispatch({type:types.CREATE_SONG,song:{
             "title":song.title,
             "artist":song.artist,
@@ -78,14 +79,7 @@ const MyForm = ()=>{
           }
           
           })
-          dispatch(setSongSlice({
-              _id:"",
-              title:"",
-              album:"",
-              artist:"",
-              genre:""
-          
-          })) 
+         dispatch({type:types.GET_SONGS})
     }
    return <>
    <StyledForm>
@@ -110,7 +104,7 @@ const MyForm = ()=>{
         </Select> */}
      <Input  onChange={handleChange('genre')} placeholder="genre" value={song.genre} fullWidth/>
      <Button
-     
+    
      onClick={()=>{hanleSubmit()}} fullWidth variant="contained">Submit</Button>
      </StyledForm>
    </>

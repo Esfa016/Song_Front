@@ -4,8 +4,9 @@ import * as slice from "../slice/songs";
 import * as statSlice from "../slice/stats"
 import {put,take, takeEvery} from "redux-saga/effects";
 export function* getSongsSaga(){
+  
     const songs = yield api.getSongs();
-    console.log(songs.data.data)
+ 
     yield put(slice.getSongsSlice(songs.data.data))
 }
 export function* createSongSaga(action){

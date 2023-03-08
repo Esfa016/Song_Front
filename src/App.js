@@ -8,10 +8,28 @@ import {Provider} from 'react-redux';
 import StatCard from './componenents/statcard';
 import BasicCard from './componenents/statcard';
 import Card2 from './componenents/Card';
+import { NavBar } from './componenents/navbar';
+import { BrowserRouter,Routes, Route} from "react-router-dom";
+import EditPage from './componenents/editform';
+import SongsInGenre from './componenents/songsInGenre';
+
 function App() {
   return <>
   <Provider store={store}> 
-  <Grid container spacing={1}>
+<BrowserRouter>
+<NavBar/>
+  <Routes>
+  <Route index element ={<SongsTable/>} />
+  <Route path='/add' element={<MyForm/>}/>
+  <Route path='/edit/:id' element={<EditPage/>}/>
+
+  <Route path='/songsInGenre'  element={<SongsInGenre/>}/>
+  <Route path='/stastics' element={<StatCard/>}/>
+  <Route path='' element={<h1>404 Page NotFound</h1>}/>
+  </Routes>
+  </BrowserRouter>
+ 
+  {/* <Grid container spacing={1}>
       <Grid item xs={1} md={1} lg={2}>
         <MyForm></MyForm>
       </Grid>
@@ -25,7 +43,7 @@ function App() {
        <StatCard/>
              </Grid>
       
-  </Grid>
+  </Grid> */}
   </Provider>
   
   </>

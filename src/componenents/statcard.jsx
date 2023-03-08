@@ -7,6 +7,9 @@ import * as types from "../redux/types/index";
 import { useDispatch, useSelector } from 'react-redux';
 import { jsx, css } from "@emotion/react";
 import Card2 from './Card';
+import { Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import SongsInGenre from './songsInGenre';
 
 const cardStyles = css`
   background-color: #ffffff;
@@ -30,12 +33,19 @@ const contentStyles = css`
 export default function BasicCard() {
   const data = useSelector(state=>state.stats);
   const dispatch = useDispatch();
+  const navigation = useNavigate();
   React.useEffect(()=>{dispatch({type:types.GET_STATS})},[])
-
+  const handleSeeMore = (totalSongsInGenre) =>{
+    //console.log(totalSongsInGenre);
+    
+  navigation('/songsInGenre', {state:{totalSongsInGenre:totalSongsInGenre}})
+   
+  }
   return (
 
       data.isLoading ? <h1>Waiting</h1> :
         <>
+        <div>
           <Card
             css={cardStyles}
             sx={{ minWidth: 275, m: 2, flexGrow: 1 }}
@@ -84,8 +94,9 @@ export default function BasicCard() {
             </CardContent>
           
           </Card>
+          <Button  onClick={()=>{handleSeeMore( data.totalSongsInGenre )}} >See more</Button>
         
-           
+{/*            
            {data.totalSongsInGenre.map((genreSongs,index)=>{
             {console.log(genreSongs['songs'])}
             <Card
@@ -96,8 +107,8 @@ export default function BasicCard() {
              
             </Card>
             
-          })} 
-          
+          })}  */}
+          </div>
         </>
         
       
