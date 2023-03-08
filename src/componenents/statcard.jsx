@@ -77,7 +77,7 @@ export default function BasicCard() {
             <CardContent>
               <Typography css={headerStyles}>Total number of albums</Typography>
               <Typography css={contentStyles}>
-                {data.totalAlbums[0]['totalAlbums']}
+                {data.totalAlbums[0]['totalAlubms']}
               </Typography>
             </CardContent>
           </Card>
