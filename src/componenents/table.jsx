@@ -5,15 +5,15 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Button } from '@mui/material';
+
 import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import * as types from "../redux/types/index";
-import * as slice from "../redux/slice/song"
-import styled from '@emotion/styled';
-import BasicCard from './statcard';
 
-import { Link, useNavigate } from 'react-router-dom';
+import styled from '@emotion/styled';
+
+
+import { useNavigate } from 'react-router-dom';
 export default function SongsTable() {
 
   const StyledButton = styled.button`

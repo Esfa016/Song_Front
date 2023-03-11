@@ -1,13 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
 import MyForm from './componenents/addform';
 import SongsTable from './componenents/table';
-import Grid  from '@mui/material/Grid';
+
 import store from './redux/store';
 import {Provider} from 'react-redux';
 import StatCard from './componenents/statcard';
-import BasicCard from './componenents/statcard';
-import Card2 from './componenents/Card';
+
 import { NavBar } from './componenents/navbar';
 import { BrowserRouter,Routes, Route} from "react-router-dom";
 import EditPage from './componenents/editform';
