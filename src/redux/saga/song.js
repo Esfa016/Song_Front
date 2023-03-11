@@ -32,8 +32,18 @@ export function* updateSongSaga(action){
         artist:action.song.artist,
         genre:action.song.genre
     }
+    try{
   const resp =  yield api.updateSong(song,action.id)
     yield put(slice.editSongsSlice(action.song))
+    }
+    catch(e){
+        if(e.response){
+            alert(e.response.data)
+        }
+        else{
+            alert('something went wrong. please try again');
+        }
+    }
 }
 export function* deleteSongSaga(action){
  

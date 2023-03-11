@@ -17,8 +17,8 @@ import { Link, useNavigate } from 'react-router-dom';
 export default function SongsTable() {
 
   const StyledButton = styled.button`
-width: 100%;
-  padding: 10px 20px;
+
+  
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
@@ -114,8 +114,9 @@ const handleEditClick = (id) => {
               </StyledTableCell>
               <TableCell align="right">
               <StyledButton 
+               
                onClick={()=> dispatch({type: types.DELETE_SONG, id: row._id}) }
-              variant="contained">Delete</StyledButton>
+              >Delete</StyledButton>
               </TableCell>
             
             </StyledTableRow>
