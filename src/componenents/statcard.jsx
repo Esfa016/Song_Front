@@ -10,25 +10,21 @@ import Card2 from './Card';
 import { Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import SongsInGenre from './songsInGenre';
+import styled from '@emotion/styled';
 
-const cardStyles = css`
-  background-color: #ffffff;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+const StyledCard = styled.div`
+background-color: #ffffff;
+box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+border-radius: 8px;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 16px;
+text-align: center;
 `;
 
-const headerStyles = css`
-  padding: 16px;
-  background-color: #f4f4f4;
-  font-size: 1.25rem;
-  font-weight: bold;
-`;
-
-const contentStyles = css`
-  padding: 16px;
-  font-size: 1rem;
-`;
 
 export default function BasicCard() {
   const data = useSelector(state=>state.stats);
@@ -43,57 +39,58 @@ export default function BasicCard() {
   }
   return (
 
-      data.isLoading ? <h1>Waiting</h1> :
+      data.isLoading ? <h1>Waiting...</h1> :
         <>
         <div>
-          <Card
-            css={cardStyles}
+          <StyledCard
+        
+          
             sx={{ minWidth: 275, m: 2, flexGrow: 1 }}
           >
             <CardContent>
-              <Typography css={headerStyles}>Total number of songs</Typography>
-              <Typography css={contentStyles}>
+              <Typography>Total number of songs</Typography>
+              <Typography >
                 {data.numberOfSongs}
               </Typography>
             </CardContent>
-          </Card>
+          </StyledCard>
 
-          <Card
-            css={cardStyles}
+          <StyledCard
+     
             sx={{ minWidth: 275, m: 2, flexGrow: 1 }}
           >
             <CardContent>
-              <Typography css={headerStyles}>Total number of artists</Typography>
-              <Typography css={contentStyles}>
+              <Typography>Total number of artists</Typography>
+              <Typography>
                 {data.totalArtist[0]['totalArtists']}
               </Typography>
             </CardContent>
-          </Card>
+          </StyledCard>
 
-          <Card
-            css={cardStyles}
+          <StyledCard
+           
             sx={{ minWidth: 275, m: 2, flexGrow: 1 }}
           >
             <CardContent>
-              <Typography css={headerStyles}>Total number of albums</Typography>
-              <Typography css={contentStyles}>
+              <Typography >Total number of albums</Typography>
+              <Typography>
                 {data.totalAlbums[0]['totalAlubms']}
               </Typography>
             </CardContent>
-          </Card>
+          </StyledCard>
 
-          <Card
-            css={cardStyles}
+          <StyledCard
+           
             sx={{ minWidth: 275, m: 2, flexGrow: 1 }}
           >
             <CardContent>
-              <Typography css={headerStyles}>Total number of genres</Typography>
-              <Typography css={contentStyles}>
+              <Typography >Total number of genres</Typography>
+              <Typography >
                 {data.totalGenre[0]['totalGenre']}
               </Typography>
             </CardContent>
           
-          </Card>
+          </StyledCard>
           <Button  onClick={()=>{handleSeeMore( data.totalSongsInGenre )}} >See more</Button>
         
 {/*            
