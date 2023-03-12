@@ -10,11 +10,13 @@ const StyledForm = styled.form`
   background-color: #fff;
   border: 1px solid #ccc;
   padding: 16px;
-  margin:15px;
+  margin: 15px auto;
   border-radius: 4px;
-   
+  max-width: 600px;
   
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 
@@ -29,21 +31,13 @@ const MyForm = ()=>{
       const song= useSelector(state => state.song)
     const hanleSubmit = ()=>{
       alert(song.album)
-          song._id===""? dispatch({type:types.CREATE_SONG,song:{
+         dispatch({type:types.CREATE_SONG,song:{
             "title":song.title,
             "artist":song.artist,
             "album":song.album,
             "genre":song.genre
-          }}): dispatch({type:types.UPDATE_SONG, id:song._id, song:{
-            "_id":song._id,
-            "title":song.title,
-            "artist":song.artist,
-            "album":song.album,
-            "genre":song.genre
-          }
-          
-          })
-         dispatch({type:types.GET_SONGS})
+          }})
+         
     }
    return <>
    <StyledForm>

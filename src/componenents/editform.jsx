@@ -6,7 +6,48 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../redux/types/index';
 
 
+import styled from '@emotion/styled';
+const StyledForm = styled.form`
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 16px;
+  margin: 15px;
+  border-radius: 4px;
+  max-width: 600px;
+  margin: auto;
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
 
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    background-color: #008CBA;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #006C9B;
+  }
+`;
 
 
 
@@ -58,7 +99,7 @@ useEffect(()=>{
   };
 
   return (
-    <form 
+    <StyledForm
     
     
     
@@ -109,7 +150,7 @@ useEffect(()=>{
             "_id":id
         }})}
       type="submit">Update</button>
-    </form>
+    </StyledForm>
   );
 };
 
