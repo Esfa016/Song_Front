@@ -75,7 +75,7 @@ React.useEffect(()=>{dispatch({type:types.GET_SONGS})},[])
 const handleEditClick = (id) => {
   navigation(`/edit/${id}`)
 };
-console.log(rows.isLoading)
+
 
 
 
@@ -84,9 +84,7 @@ console.log(rows.isLoading)
    
 
   
-      rows.isLoading===true?  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-    <ReactLoading type={'spin'} color={'blue'} height={50} width={50} />
-  </div>:
+    
   <>    <StyledTable>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -101,8 +99,9 @@ console.log(rows.isLoading)
           </StyledTableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
           
+          {rows.map((row) => (
+            
             <StyledTableRow
               key={row._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
