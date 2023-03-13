@@ -11,6 +11,7 @@ import { Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import SongsInGenre from './songsInGenre';
 import styled from '@emotion/styled';
+import ReactLoading from 'react-loading';
 
 const StyledCard = styled.div`
 background-color: #ffffff;
@@ -39,7 +40,10 @@ export default function BasicCard() {
   }
   return (
 
-      data.isLoading ? <h1>Waiting...</h1> :
+      data.isLoading ?       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <ReactLoading type={'spin'} color={'blue'} height={50} width={50} />
+    </div>
+ :
         <>
         <div>
           <StyledCard

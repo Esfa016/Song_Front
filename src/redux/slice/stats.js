@@ -13,8 +13,7 @@ const stats = createSlice({
            
             state = action.payload
             state.isLoading = false
-            console.log('state here');
-            console.log(state)
+       
             return state;
         }
     }

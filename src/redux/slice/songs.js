@@ -9,12 +9,15 @@ const songs = createSlice({
          title:"",
          artist:"",
          album:"",
-         genre:""
+         genre:"",
+         isLoading:true
 
     }],
     reducers:{
         getSongsSlice:(state,action)=>{
+          
             state = action.payload
+            state.isLoading = false
             return state;
         },
         addSongsSlice:(state,action)=>{

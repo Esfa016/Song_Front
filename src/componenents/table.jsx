@@ -14,6 +14,7 @@ import styled from '@emotion/styled';
 
 
 import { useNavigate } from 'react-router-dom';
+import ReactLoading from 'react-loading';
 export default function SongsTable() {
 
   const StyledButton = styled.button`
@@ -74,14 +75,19 @@ React.useEffect(()=>{dispatch({type:types.GET_SONGS})},[])
 const handleEditClick = (id) => {
   navigation(`/edit/${id}`)
 };
+console.log(rows.isLoading)
 
 
 
 
   return (
-    <div style={{ textAlign: 'center' }} >
-      <div>
-    <StyledTable>
+   
+
+  
+      rows.isLoading===true?  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <ReactLoading type={'spin'} color={'blue'} height={50} width={50} />
+  </div>:
+  <>    <StyledTable>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -125,8 +131,7 @@ const handleEditClick = (id) => {
       </Table>
     </TableContainer>
     </StyledTable>
-    </div>
-    
-    </div>
+    </>
+   
   );
 }
