@@ -87,24 +87,24 @@ useEffect(()=>{
     setFormState({ ...formState, [name]: value });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+ const handleSubmit = (event)=>{
+  event.preventDefault();
+    dispatch({type:types.UPDATE_SONG, id:id, song:{
+      "title":formState.title,
+      "artist":formState.artist,
+      "album":formState.album,
+      "genre":formState.genre,
+      "_id":id
+  }})
+  }
 
-    try {
-      await axios.put(`/api/songs/${id}`, formState);
-      console.log('Song updated successfully!');
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  
 
   return (
     <StyledForm
-    
-    
-    
-    onSubmit={handleSubmit}>
-      
+    onSubmit={handleSubmit}
+    >
+  
       <div>
         <label htmlFor="genre">Genre:</label>
         <input
@@ -142,14 +142,11 @@ useEffect(()=>{
         />
       </div>
       <button
-        onClick={()=>dispatch({type:types.UPDATE_SONG, id:id, song:{
-            "title":formState.title,
-            "artist":formState.artist,
-            "album":formState.album,
-            "genre":formState.genre,
-            "_id":id
-        }})}
-      type="submit">Update</button>
+      type='submit'
+        onClick={
+          
+          ()=>handleSubmit()}
+      >Update</button>
     </StyledForm>
   );
 };

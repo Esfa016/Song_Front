@@ -2,7 +2,7 @@ import * as api from "../../apis/index";
 import * as types from "../types/index";
 import * as slice from "../slice/songs";
 import * as statSlice from "../slice/stats"
-import {put,take, takeEvery} from "redux-saga/effects";
+import {put, takeLatest, takeEvery} from "redux-saga/effects";
 export function* getSongsSaga(){
   
     const songs = yield api.getSongs();
@@ -11,7 +11,7 @@ export function* getSongsSaga(){
 }
 export function* createSongSaga(action){
     try{
-  const resp =  yield api.addSongs(action.song)
+  const resp =  yield  api.addSongs(action.song)
   console.log(resp);
     yield put(slice.addSongsSlice(action.song))
     }
@@ -34,6 +34,7 @@ export function* updateSongSaga(action){
     }
     try{
   const resp =  yield api.updateSong(song,action.id)
+console.log(action.song)
     yield put(slice.editSongsSlice(action.song))
     }
     catch(e){
@@ -49,7 +50,14 @@ export function* deleteSongSaga(action){
  
     yield api.deleteSong(action.id);
     yield put(slice.deleteSongsSlice(action.id))
+
+
+   
+
+
 }
+
+
 
 export function* getStats(){
     const stats = yield api.getStats()
@@ -59,7 +67,7 @@ export function* getStats(){
 
 
 export function* watchSongsAsync(){
-    yield takeEvery(types.GET_SONGS,getSongsSaga)
+    yield takeLatest(types.GET_SONGS,getSongsSaga)
     yield takeEvery(types.CREATE_SONG,createSongSaga)
     yield takeEvery(types.UPDATE_SONG,updateSongSaga)
     yield takeEvery(types.DELETE_SONG,deleteSongSaga)

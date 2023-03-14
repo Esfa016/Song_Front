@@ -70,6 +70,7 @@ const StyledTableRow = styled(TableRow)`
 const navigation = useNavigate()
 
   const rows = useSelector(state=>state.songs)
+
 const dispatch = useDispatch();
 React.useEffect(()=>{dispatch({type:types.GET_SONGS})},[])
 const handleEditClick = (id) => {
@@ -77,15 +78,18 @@ const handleEditClick = (id) => {
 };
 
 
-
+console.log(rows.isLoading)
 
 
   return (
    
-
+rows.isLoading? 
   
     
-  <>    <StyledTable>
+  <>   
+  
+  
+   <StyledTable>
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -131,6 +135,9 @@ const handleEditClick = (id) => {
     </TableContainer>
     </StyledTable>
     </>
+    :<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <ReactLoading type={'spin'} color={'blue'} height={50} width={50} />
+  </div>
    
   );
 }
