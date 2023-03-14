@@ -12,8 +12,9 @@ export function* getSongsSaga(){
 export function* createSongSaga(action){
     try{
   const resp =  yield  api.addSongs(action.song)
-  console.log(resp);
+
     yield put(slice.addSongsSlice(action.song))
+    alert('successfully created song')
     }
     catch(e){
         if(e.response){
@@ -33,12 +34,15 @@ export function* updateSongSaga(action){
         genre:action.song.genre
     }
     try{
+    
   const resp =  yield api.updateSong(song,action.id)
-console.log(action.song)
+
     yield put(slice.editSongsSlice(action.song))
+    alert('successfully updated.')
     }
     catch(e){
         if(e.response){
+            
             alert(e.response.data)
         }
         else{

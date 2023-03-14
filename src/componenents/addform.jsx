@@ -30,7 +30,7 @@ const MyForm = ()=>{
     }
       const song= useSelector(state => state.song)
     const hanleSubmit = ()=>{
-      alert(song.album)
+    
          dispatch({type:types.CREATE_SONG,song:{
             "title":song.title,
             "artist":song.artist,

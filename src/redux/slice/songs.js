@@ -10,7 +10,7 @@ const songs = createSlice({
          artist:"",
          album:"",
          genre:"",
-         isLoading:false
+         isLoaded:false
          
     
 
@@ -20,7 +20,7 @@ const songs = createSlice({
             
             state = action.payload
             
-              state.isLoading = true
+              state.isLoaded = true
             return state;
         },
         addSongsSlice:(state,action)=>{
@@ -35,6 +35,7 @@ const songs = createSlice({
         } ,
         deleteSongsSlice:(state,action)=>{
           state =  state.filter(i=>i._id!==action.payload)
+          state.isLoaded = true
             return state;
         }
     }
